@@ -1,0 +1,450 @@
+{% extends "layout.html" %}
+{% block content %}
+   
+<style>
+.navbar{
+    background-color: rgba(7, 3, 85, 0.694);
+}
+</style>
+    
+    <!-- Navbar -->
+    <navbar-expand-lg class="navbar navbar-expand-lg navbar-dark py-3 fixed-top">
+        <div class="container font-monospace">
+            <a href="#" class="navbar-brand text-warning">Sepsis Detection System</a>
+
+            <!-- For smaller screens -->
+            <button 
+                class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navmenu"
+            >
+                <span class="navbar-toggler-icon"></span>
+            </button>         
+
+            <div class="collapse navbar-collapse" id="navmenu">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#intro" class="nav-link">Introduction</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#symptoms" class="nav-link">Symptoms</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#causes" class="nav-link">Causes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#treatment" class="nav-link">Treatment</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#precautions" class="nav-link">Precautions</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#gallery" class="nav-link">Gallery</a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="/login" class="nav-link bg-primary rounded">Login</a>
+                  </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </navbar-expand-lg>
+    <!-- Navbar ends-->
+
+
+    <!-- Home Section Starts -->
+<section class="home bg-transparent text-light px-5 text-center">
+    <div class="container p-5">
+        <div>
+            <div class="font-monospace m-5 size">Welcome to <span class="text-warning">Sepsis Detection System</span>!</div>
+            <h3 class="font-monospace mt-5">We are here to provide you an early prediction and awareness regarding sepsis.</h3>
+            <div class="m-5">
+                <button class="btn btn-outline-light btn-lg">Know About sepsis</button>
+                <a href="{{url_for('page1')}}"><button class="btn btn-outline-light  btn-lg">Predict sepsis</button></a>
+            </div>
+            <div>
+                <img class="img-fluid w-30 my-img-2 d-none d-lg-block" src="/static/img/sepsis.jpg" alt="sepsis">
+            </div>
+        </div>
+        <img src="" alt="">
+    </div>
+    
+</section>
+
+<!-- Home Section Ends -->
+
+<!-- Introduction section start -->
+<section id="intro">
+    <div class="container mt-5">
+        <h1 class="font-monospace text-center">Introduction to Sepsis</h1>
+        <div class="row align-items-center justify-content-between">
+            <div class="col-md">
+                <img src="/static/img/baby.jpg" class="img-fluid" alt="">
+            </div>
+            <div class="col-md p-5">
+                <h5 class="text-primary">What is Sepsis</h5>
+                <h2>Making it count one detection at a time</h2>
+                <p class="lead">
+                    According to World Health Organisation (WHO) , “Sepsis is a potentially life-threatening organ dysfunction caused by a dysregulated host response to infection. Any type of infectious pathogen can potentially cause sepsis.”
+                </p>
+                <p>Sepsis is a life-threatening condition triggered by an intense immune response to infection, causing inflammation, blood clotting, and organ damage due to poor blood flow. It results from an imbalance between oxygen supply and demand, leading to multiple organ dysfunction. Antimicrobial resistance increases the risk and severity of sepsis, contributing to higher mortality rates in affected patients.
+                </p>
+                <a href="https://www.cdc.gov/sepsis/what-is-sepsis.html" class="btn btn-light mt-3">
+                   <i class="bi bi-chevron-right"></i>  Read More
+                </a>
+
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Introduction section end -->
+
+
+
+<!-- Symptoms section start -->
+<section id="symptoms" class="p-5 bg-dark text-light">
+    <div class="container font-monospace">
+        <h1 class="font-monospace text-center">Symptoms Of Sepsis</h1>
+        <div class="row align-items-center justify-content-between">
+            <!-- General Symptoms -->
+            <div class="col-md p-5">
+                <!-- <h5 class="text-primary">General Symptoms</h5> -->
+                <h2>General Sepsis Symptoms</h2>
+                <p class="lead">
+                    <p>Sepsis is a life-threatening condition that results from the body's uncontrolled response to infection, leading to inflammation and organ dysfunction. Timely medical attention is crucial for managing sepsis and increasing the chances of recovery.</p>
+                    <ul>
+                        <li>A fever above 101ºF (38ºC) or a temperature below 96.8ºF (36ºC)</li>
+                        <li>Heart rate higher than 90 beats per minute</li>
+                        <li>Breathing rate higher than 20 breaths per minute</li>
+                        <li>Probable or confirmed infection</li>
+                    </ul>
+                </p>
+                <a href="https://my.clevelandclinic.org/health/diseases/12361-sepsis" class="btn btn-light mt-3">
+                   <i class="bi bi-chevron-right"></i>  Read More
+                </a>
+            </div>
+
+            <!-- severe Symptoms -->
+            <div class="col-md p-5">
+                <h2>Severe sepsis Symptoms</h2>
+                <p class="lead">
+                    <ul>
+                        <li>Patches of discolored skin</li>
+                        <li>Decreased urination</li>
+                        <li>Changes in mental ability</li>
+                        <li>Low platelet (blood clotting cells) count</li>
+                        <li>Problems breathing</li>
+                        <li>Abnormal heart functions</li>
+                        <li>Chills due to fall in body temperature</li>
+                        <li>Unconsciousness and  Extreme weakness</li>
+                    </ul>
+                </p>
+                <a href="https://my.clevelandclinic.org/health/diseases/12361-sepsis" class="btn btn-light mt-3">
+                   <i class="bi bi-chevron-right"></i>  Read More
+                </a>
+            </div>
+        </div>
+        <div class="align-items-center justify-content-center ">
+            <img src="/static/img/sepsis-symptoms.png" class=" w-50 my-img-2" alt="sepsis-symptoms">
+        </div>
+    </div>
+</section>
+<!-- Symptoms section end -->
+
+
+<!-- Causes section start -->
+<section id="causes">
+    <div class="container font-monospace">
+
+      <div class="row">
+
+        <div class="col-lg-4 offset-lg-4">
+          <div class="section-header">
+            <h1 class="font-monospace text-center m-4">Causes Of Sepsis</h1>
+            <span class="section-divider"></span>
+          </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-lg-4 col-md-6" style="padding-bottom: 50px;">
+                <h3 class="text-dark">Kidney infection</h3>
+                <p class="descript">Kidney infection (pyelonephritis) is a type of urinary tract infection (UTI) that generally begins in your urethra or bladder and travels to one or both of your kidneys.</p>
+                <a href="https://www.mayoclinic.org/diseases-conditions/kidney-infection/symptoms-causes/syc-20353387"><button class="btn btn-outline-dark btn-lg">Know more</button></a>
+            </div>
+            <div class="col-lg-4 col-md-6" style="padding-bottom: 50px;">
+                <h3 class="text-dark">Abdominal infection</h3>
+                <p class="descript">Bacterial gastroenteritis happens when bacteria causes an infection in your gut causing inflammation in your stomach. You may also experience symptoms like vomiting, severe abdominal cramps, and diarrhea</p>
+                <a href="https://www.healthline.com/health/bacterial-gastroenteritis"><button class="btn btn-outline-dark btn-lg">Know more</button></a>
+            </div>
+            <div class="col-lg-4 col-md-6" style="padding-bottom: 50px;">
+                <h3 class="text-dark">Meningitis</h3>
+                <p class="descript">Meningitis is an inflammation of the meninges. The meninges are the three membranes that cover the brain and spinal cord. Meningitis can occur when fluid surrounding the meninges becomes infected.</p>
+                <a href="https://www.mayoclinic.org/diseases-conditions/kidney-infection/symptoms-causes/syc-20353387"><button class="btn btn-outline-dark btn-lg">Know more</button></a>
+            </div>
+            <div class="col-lg-4 col-md-6" style="padding-bottom: 50px;">
+                <h3 class="text-dark">Cellulitis</h3>
+                <p class="descript">Cellulitis is a common and sometimes painful bacterial skin infection. It may first appear as a red, swollen area that feels hot and tender to the touch. The redness and swelling can spread quickly.</p>
+                <a href="https://www.healthline.com/health/bacterial-gastroenteritis"><button class="btn btn-outline-dark btn-lg">Know more</button></a>
+            </div>
+            <div class="col-lg-4 col-md-6" style="padding-bottom: 50px;">
+                <h3 class="text-dark">Pneumonia</h3>
+                <p class="descript">Pneumonia happens when an infection causes the air sacs in your lungs (your doctor will call them alveoli) to fill with fluid or pus. That can make it hard for you to breathe in enough oxygen to reach your bloodstream</p>
+                <a href="https://www.medicalnewstoday.com/articles/151632.php"><button class="btn btn-outline-dark btn-lg">Know more</button></a>
+            </div>
+            <div class="col-lg-4 col-md-6" style="padding-bottom: 50px;">
+                <h3 class="text-dark">Bloodstream infection</h3>
+                <p class="descript">Septicemia is a serious bloodstream infection. It's also known as blood poisoning. It occurs when a bacterial infection elsewhere in the body, such as the lungs or skin, enters the bloodstream.</p>
+                <a href="https://www.healthline.com/health/septicemia"><button class="btn btn-outline-dark btn-lg">Know more</button></a>
+            </div>
+            
+         </div>
+
+        
+
+    </div>
+</section>
+<!-- Causes section end -->
+
+
+
+
+<!-- Treatment section start -->
+<section id="treatment" class="p-5 bg-dark text-light">
+    <div class="container">
+        <h1 class="font-monospace text-center">Treatment Of Sepsis</h1>
+    <div class="font-monospace">
+        <h4 class="text-warning">Medications</h4>
+        <ol>
+            <li><b>Antibiotics</b>- Treatment with antibiotics should begin immediately. Initially you'll receive broad-spectrum antibiotics, which are effective against a variety of bacteria. The antibiotics are administered intravenously (IV).After learning the results of blood tests, your doctor may switch to a different antibiotic that's targeted to fight the particular bacteria causing the infection.</li>       
+            <br>
+            <li><b>Intravenous fluids</b>- People who have sepsis often receive intravenous fluids right away, usually within three hours.</li>
+            <br>    
+            <li><b>Vasopressors</b>- If your blood pressure remains too low even after receiving intravenous fluids, you may be given a vasopressor medication, which constricts blood vessels and helps to increase blood pressure.</li>
+    
+        </ol>
+    </div>
+    <br>
+    <div class="font-monospace">
+        <h4 class="text-warning">Supportive care</h4>
+        <ul>
+            <li>People who have sepsis often receive supportive care that includes oxygen, insulin to stabilize blood sugar, intravenous fluids, blood and plasma transfusions,. Depending on the condition, many patients receive oxygen and intravenous (IV) fluids to maintain blood flow and oxygen to organs. Dialysis a might be necessary if the kidneys are affected. Kidneys help filter harmful wastes, salt, and excess water from the blood. In dialysis, a machine performs these functions.</li>
+        </ul>
+    </div>
+    <br>
+    <div class="font-monospace">
+        <h4 class="text-warning">Surgery</h4>
+        <ul>
+            <li>Surgery may be needed to remove sources of infection, such as collections of pus (abscesses), infected tissues or gangrene.Sometimes, treatment in an intensive care unit (ICU) is also needed.</li>
+        </ul>
+    </div>
+    </div>
+</section>
+
+<!-- Treatment section end -->
+
+<!-- Precaution section start-->
+<section id="precautions" class="p-5">
+    <div class="container">
+        <h1 class="font-monospace text-center">Precautions to Sepsis</h1>
+        <div class="row align-items-center justify-content-between">
+            
+            <div class="col-md p-5">
+                <h5 class="text-primary">Precaution</h5>
+                
+                <p>
+                    <ol>
+                        <li><b>Get vaccinated-</b> Since sepsis cases can stem from the <a href="https://www.healthline.com/health/cold-flu/flu">flu</a> and <a href="https://www.healthline.com/health-news/seniors-protected-by-pfizer-pneumonia-vaccine-022514#1">pneumonia</a>, it is important for those at risk to get <a href="https://www.healthline.com/health/vaccinations">vaccinated</a>. According to a CDC study, 35% of sepsis cases were a result of pneumonia. But, only 20% of those at risk ages 65 and under were vaccinated against the infection while 60% of those 65 and older got their pneumonia vaccine. In order to lessen the risk, a pneumonia vaccine as well as a flu shot is recommended.</li> 
+                        <li><b>Clean skin wounds promptly-</b> Practising good hygiene. This means practising proper wound care, hand-washing, sanitation and bathing regularly.Cleaning skin wounds, especially of those who are diabetic, can help to reduce the risk of sepsis.</li> 
+                        <li><b>Treat urinary tract infections promptly-</b> The CDC found that a quarter of sepsis cases resulted from a urinary tract infection. Treating these in a timely manner can reduce the risk of the infection spreading.</li> 
+                        <li><b>Other preventive measures can be:</b>
+                            <ol>
+                                <li>Access to quality care during pregnancy and birth</li>
+                                <li>Responsible and timely access to the right medicines</li>
+                                <li>Proper infection prevention and control in hospitals and clinics.</li>
+                            </ol>
+                        </li> 
+
+                    </ol>
+                </p>
+                
+                <!-- <a href="https://www.hdfcergo.com/blogs/car-insurance/top-5-tips-to-drive-safely-on-damaged-roads" class="btn btn-light mt-3">
+                   <i class="bi bi-chevron-right"></i>  Read More
+                </a> -->
+
+            </div>
+            <div class="col-md">
+                <img src="/static/img/handwash.jpg" class="img-fluid" alt="">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Precaution section end-->
+
+
+
+<!-- Gallery section start-->
+<section class="p-5 bg-dark text-light">
+    <div class="container">
+        <h1 class="font-monospace text-center m-3">Gallery</h1>
+        <div class="row">
+            <div class="col-lg-4 col-md-12 mb-4 mb-lg-0">
+              <img
+                src="/static/img/gallery/g1.jpg"
+                class="w-100 shadow-1-strong rounded mb-4"
+                alt=""
+              />
+          
+              <img
+                src="/static/img/gallery/g2.jpg"
+                class="w-100 shadow-1-strong rounded mb-4"
+                alt=""
+              />
+            </div>
+          
+            <div class="col-lg-4 mb-4 mb-lg-0">
+              <img
+                src="/static/img/gallery/g3.jpg"
+                class="w-100 shadow-1-strong rounded mb-4"
+                alt=""
+              />
+          
+              <img
+                src="/static/img/gallery/g4.jpg"
+                class="w-100 shadow-1-strong rounded mb-4"
+                alt=""
+              />
+            </div>
+          
+            <div class="col-lg-4 mb-4 mb-lg-0">
+              <img
+                src="/static/img/gallery/g5.jpg"
+                class="w-100 shadow-1-strong rounded mb-4"
+                alt=""
+              />
+          
+              <img
+                src="/static/img/gallery/g6.jpg"
+                class="w-100 shadow-1-strong rounded mb-4"
+                alt=""
+              />
+            </div>
+          </div>
+    </div>
+</section>
+
+
+<!-- Gallery section end-->
+
+
+<!-- Team section -->
+<section class="bg-light py-3 py-md-5 py-xl-8">
+    <div class="container">
+      <div class="row justify-content-md-center">
+        <div class="col-12 col-md-10 col-lg-8 col-xl-7 col-xxl-6">
+          <h2 class="mb-4 display-5 text-center">Our Team</h2>
+          <hr class="w-50 mx-auto mb-5 mb-xl-9 border-dark-subtle">
+        </div>
+      </div>
+    </div>
+  
+    <div class="container overflow-hidden">
+      <div class="row gy-4 gy-lg-0 gx-xxl-5">
+        <div class="col-12 col-md-6 col-lg-3">
+          <div class="card border-0 border-bottom border-primary shadow-sm overflow-hidden">
+            <div class="card-body p-0">
+              <figure class="m-0 p-0">
+                <img class="img-fluid" src="img/team.jpg" alt="">
+                <figcaption class="m-0 p-4">
+                  <h4 class="mb-1">Devyani Pathrikar</h4>
+                  <p class="text-secondary mb-0"></p>
+                </figcaption>
+              </figure>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6 col-lg-3">
+          <div class="card border-0 border-bottom border-primary shadow-sm overflow-hidden">
+            <div class="card-body p-0">
+              <figure class="m-0 p-0">
+                <img class="img-fluid" src="img/team.jpg" alt="">
+                <figcaption class="m-0 p-4">
+                  <h4 class="mb-1">Sneha Bamane</h4>
+                  <p class="text-secondary mb-0"></p>
+                </figcaption>
+              </figure>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6 col-lg-3">
+          <div class="card border-0 border-bottom border-primary shadow-sm overflow-hidden">
+            <div class="card-body p-0">
+              <figure class="m-0 p-0">
+                <img class="img-fluid" src="img/team.jpg" alt="">
+                <figcaption class="m-0 p-4">
+                  <h4 class="mb-1">Shweta Maharanawar</h4>
+                  <p class="text-secondary mb-0"></p>
+                </figcaption>
+              </figure>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6 col-lg-3">
+          <div class="card border-0 border-bottom border-primary shadow-sm overflow-hidden">
+            <div class="card-body p-0">
+              <figure class="m-0 p-0">
+                <img class="img-fluid" src="img/team.jpg" alt="">
+                <figcaption class="m-0 p-4">
+                  <h4 class="mb-1"></h4>
+                  <p class="text-secondary mb-0"></p>
+                </figcaption>
+              </figure>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<!-- Team section -->
+
+
+
+
+<!-- Footer section start -->
+<footer class="p-5 bg-dark text-white text-center position-relative">
+    <div class="container">
+        <p class="lead"></p>
+
+        <a href="#" class="position-absolute bottom-0 end-0 p-5">
+            <i class="bi bi-arrow-up-circle h1"></i>
+        </a>
+    </div>
+</footer>
+{% endblock %}
+   
+<!-- Footer section end -->
+
+
+
+
+
+   
+    
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

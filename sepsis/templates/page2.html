@@ -1,0 +1,80 @@
+{% extends "layout.html" %}
+{% block content %}
+    
+    <!-- Navbar -->
+    <navbar-expand-lg class="navbar navbar-expand-lg navbar-dark py-3 fixed-top">
+        <div class="container font-monospace">
+            <a href="/" class="navbar-brand text-warning">Sepsis Detection System</a>
+
+            <!-- For smaller screens -->
+            <button 
+                class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navmenu"
+            >
+                <span class="navbar-toggler-icon"></span>
+            </button>         
+
+            <div class="collapse navbar-collapse" id="navmenu">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a href="/" class="nav-link">Home</a>
+                    </li>
+                    
+                    
+                </ul>
+            </div>
+        </div>
+    </navbar-expand-lg>
+    <!-- Navbar ends-->
+
+
+    <!-- Home Section Starts -->
+<section class="bg-transparent text-light px-5 py-5 text-center">
+    <div class="container font-family-card py-5">
+        <div>
+            <h1 class="text-warning py-5">Sepsis Detection</h1>
+            <div>
+                <!-- <div class="card" style="width: 18rem;"> this is original div-->
+                <div class="card info" >
+                    <!-- <img src="..." class="card-img-top" alt="..."> -->
+                    <div class="card-body">
+                      <h2 class="card-title bold pt-1">Patient details</h2>
+                      <div class="info_card">
+                        <form action="" method="post">
+                            <div class="form-group">
+                                <div class="form-row">
+                                    <div class="col">
+                                        <input type="number"  min="1000" max="9999" name="nhi_no" class="form-control mb-4" placeholder="National Health Index (NHI) Number [Its four digit number]" required>
+                                    </div>                               
+                                    <div class="col">
+                                      <input type="text" name="name" class="form-control mb-4" placeholder="First Name" required>
+                                    </div>
+                                    <div class="col">
+                                        <input type="text" name="last_name" class="form-control mb-4" placeholder="Last Name" required>
+                                    </div>
+                                    <div class="col">
+                                        <input type="number" name="age" class="form-control mb-4" min="1" max="100" step="1" placeholder="Age" required>
+                                    </div>
+                                </div>
+                          </div>
+                        
+                      <button href="" class="btn btn-outline-primary bold">Back</button>
+                      <button class="btn btn-outline-primary bold" name="next" type="submit">Start Prediction</button>
+                    </form>
+                    </div>
+                  </div>
+            </div>
+
+            
+        
+            
+        </div>
+        <img src="" alt="">
+    </div>
+</section>
+
+
+{% endblock %}
+<!-- Home Section Ends -->

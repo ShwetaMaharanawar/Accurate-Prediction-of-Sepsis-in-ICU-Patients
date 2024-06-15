@@ -1,0 +1,520 @@
+{% extends "layout.html" %}
+{% block content %}
+    
+    <!-- Navbar -->
+    <navbar-expand-lg class="navbar navbar-expand-lg navbar-dark py-3 fixed-top">
+        <div class="container font-monospace">
+            <a href="/" class="navbar-brand text-warning">Sepsis Detection System</a>
+
+            <!-- For smaller screens -->
+            <button 
+                class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navmenu"
+            >
+                <span class="navbar-toggler-icon"></span>
+            </button>         
+
+            <div class="collapse navbar-collapse" id="navmenu">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a href="/" class="nav-link">Home</a>
+                    </li>
+                    
+                    
+                </ul>
+            </div>
+        </div>
+    </navbar-expand-lg>
+    <!-- Navbar ends-->
+<!-- modal for information about parameter -->
+    <div class="modal fade modal-dialog modal-lg" id="information" aria-hidden="true" aria-labelledby="modalLabel" tabindex="-1">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modalLabel"><b>SOFA Score</b></h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="container">
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <th scope="col">Score</th>
+                    <th scope="col">Glasgow coma scale (GCS)</th>
+                    <th scope="col">Respiratory system <br> PaO2/FiO2 (mmHg)</th>
+                    <th scope="col">Coagulation <br>Platelets (×103/μl)</th>
+                    <th scope="col">Liver (mg/dl)</th>
+                    <th scope="col">Kidney function (mg/dl)</th>
+                  </tr>
+                  <tr>
+                    <th scope="row">+0</th>
+                    <td>15</td>
+                    <td>≥&nbsp;400</td>
+                    <td>≥&nbsp;150</td>
+                    <td>&lt;&nbsp;1.2</td>
+                    <td>&lt;&nbsp;1.2</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">+1</th>
+                    <td>13–14</td>
+                    <td>&lt;&nbsp;400</td>
+                    <td>&lt;&nbsp;150</td>
+                    <td>1.2–1.9</td>
+                    <td>1.2–1.9</td>
+                  </tr>
+                  <tr>
+                  <th scope="row">+2</th>
+                    <td>10–12</td>
+                    <td>&lt;&nbsp;300</td>
+                    <td>&lt;&nbsp;100</td>
+                    <td>2.0–5.9</td>
+                    <td>2.0–3.4</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">+3</th>
+                    <td>6–9</td>
+                    <td>&lt;&nbsp;200</td>
+                    <td>&lt;&nbsp;50</td>
+                    <td>6.0–11.9</td>
+                    <td>3.5–4.9</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">+4</th>
+                    <td>&lt;&nbsp;6</td>
+                    <td>&lt;&nbsp;100</td>
+                    <td>&lt;&nbsp;20</td>
+                    <td>&gt;&nbsp;12.0</td>
+                    <td>&gt;&nbsp;5.0</td>
+                  </tr>
+                </tbody>
+              </table>
+
+                <div class="modal-header">
+                  <h5 class="modal-title" id="modalLabel"><b>Quick SOFA score</b></h5>
+                </div>
+                <table class="table mt-5">
+                <thead>
+                  <tr>
+                    <th scope="col">Assessment</th>
+                    <th scope="col">qSOFA score</th>
+                    <!-- <th scope="col">Altered mentation</th> -->
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th>Low Blood Pressure (SBP ≤ 100 mmHg)</th>
+                    <td>+1</td>
+                  </tr>
+                  <tr>
+                    <th>Respiratory rate (≥ 22 breaths/min)</th>
+                    <td>+1</td>
+                  </tr>
+                  <tr>
+                    <th>Altered mentation (GCS ≤ 14)</th>
+                    <td>+1</td>
+                  </tr>
+                  
+                  
+                </tbody>
+              </table>
+            </div>
+
+            
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- result -->
+    <div class="modal fade" id="result" aria-hidden="true" aria-labelledby="modalLabel" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="modalLabel">Sepsis Detection</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <h3 id="detect"></h3>
+              <p>SOFA SCORE : <strong id="sofa"></strong></p>
+              <p>qSOFA SCORE : <strong id="qsofa"></strong></p>
+
+              
+            </div>
+            <div class="modal-footer">
+              <button class="btn btn-primary" data-bs-toggle="modal" data-bs-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    <!-- Home Section Starts -->
+<section class="bg-transparent text-light px-5 py-5 text-center home_predict">
+    <div class="container font-family-card py-5">
+        <div>
+            <h1 class="text-warning font-monospace mb-4">Sepsis Detection</h1>
+
+        <!-- This is Calculator For SOFA Score -->
+        <div>
+            <div class="d-flex justify-content-center">
+                <div class="card info" style="width: 90rem;"> 
+                <!-- <div class="card card-color" > -->
+                    <div class="card-body">
+                     <div class="row d-flex">
+                        <div class="col-md-10">
+                          <h2 class="card-title bold pt-1">SOFA, qSOFA & Sepsis Detection</h2>
+                        </div>
+                        <div class="col-md-2">
+                          <button class="btn btn-primary" data-bs-target="#information" data-bs-toggle="modal">View  Scale</button>
+                        </div>
+                     </div>
+                        
+                        
+                      <div class="info_card">
+                        <h3 class="bold">Welcome  <strong id="p_name">{{request.args.get('name')}}</strong></h3> <br>
+                        <p class="d-none" id="p_id">{{request.args.get('id')}}</p>
+                        <p class="d-none" id="p_age">{{request.args.get('age')}}</p>
+                        <form onsubmit="return false" id="predict">
+
+                            <!-- <div data-role="rangeslider">
+                                <label for="range-1a">Diastolic and Systolic Blood Pressure (mm Hg)</label>
+                                <input type="range" name="range-1a" id="dbp-range-1a" min="60" max="120" value="80" data-popup-enabled="true" data-show-value="true">
+                                <input type="range" name="range-1b" id="sbp-range-1b" min="60" max="190" value="120" data-popup-enabled="true" data-show-value="true">
+                            </div>
+                            
+                            <div role="main" class="ui-content mt-4"> 
+                                <label for="slider">Altered mentation or Glasgow coma scale</label> 
+                                <input type="range" name="slider" id="inID" min="0" max="15" value="15" data-popup-enabled="true" data-show-value="true"> 
+                            </div> 
+
+                            <div role="main" class="ui-content"> 
+                                <label for="slider">Age</label> 
+                                <input type="range" name="slider" id="inID" min="0" max="100" value="25" data-popup-enabled="true" data-show-value="true"> 
+                            </div>  -->
+
+                           
+
+                        <!-- <div class="row">
+                            <h4 class="bold">Low Blood Pressure</h4>
+                            <p>Enter your blood pressure count</p>
+                            <div class="slidecontainer">
+                                <div id="q_pressure">
+                                    <input type="range" min="50" max="150" value="125" class="slider" id="myRange1" onchange="changeValue(1)">
+                                    <div class="sliderVal" id="output1"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <h4 class="bold">High Respiratory Rate</h4>
+                            <p>How many breaths per minute?</p>
+                            <div class="slidecontainer">
+                                <div id="q_respiratory">
+                                    <input type="range" min="0" max="40" value="0" class="slider" id="myRange2" onchange="changeValue(2)">
+                                    <div class="sliderVal" id="output1"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <br><br> -->
+
+
+
+
+                        <!-- This is Calculator For QSOFA -->
+
+                         <div class="row">
+                            
+                            <div class="col-md-4">
+                                <div class="card border-1 shadow text-center">
+                                  <div class="card-body">
+                                    <h5 class="card-title bold">Low (Diastolic) Blood Pressure</h5>
+                                    <input type="number" name="dbp" class="dbp" value="85" min="60" max="120" step="5" id="dbp" required> (mm Hg)    <!-- DBP-->
+                                    <div> 
+                                    <!-- <a href="" class="btn btn-primary m-2">Calculate</a> -->
+                                    </div>                                     
+                                  </div>
+                                </div>
+                            </div>                            
+                            <div class="col-md-4">
+                                <div class="card border-1 shadow text-center">
+                                  <div class="card-body">
+                                    <h5 class="card-title bold">High (Systolic) Blood Pressure</h5>
+                                    <input type="number" name="sbp" class="sbp" value="125" min="60" max="190" step="5" id="sbp" required> (mm Hg)  <!-- SBP-->
+                                    <div>
+                                    <!-- <a href="" class="btn btn-primary m-2">Calculate</a> -->
+                                    </div>                                     
+                                  </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                              <div class="card border-1 shadow text-center">
+                                <div class="card-body">
+                                  <h5 class="card-title bold">O<sub>2</sub> Saturation</h5>
+                                  <input type="number" name="o2s" class="o2s" value="15" id="o2s" required> % <!-- SBP-->
+                                  <div>
+                                  <!-- <a href="" class="btn btn-primary m-2">Calculate</a> -->
+                                  </div>                                     
+                                </div>
+                              </div>
+                          </div> 
+                        </div>
+                        
+
+                        <div class="row mt-4">
+
+                            <div class="col-md-6">
+                                <div class="card border-1 shadow text-center">
+                                  <div class="card-body">
+                                    <h5 class="card-title bold">Altered Mentation (Glasgow Coma Scale)</h5>
+                                    <input type="number" name="gcs" class="gcs" value="15" id="gcs" required> GCS  <!-- SBP-->
+                                    <div>
+                                    <!-- <a href="" class="btn btn-primary m-2">Calculate</a> -->
+                                    </div>                                     
+                                  </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                              <div class="card border-1 shadow text-center">
+                                <div class="card-body">
+                                  <h5 class="card-title bold">Respiratory Rate (Breaths Per Minute)</h5>
+                                  <input type="number" name="respiratory" class="respiratory" value="15" id="respiratory" required> BPM  <!-- resp-->
+                                  <div>
+                                  <!-- <a href="" class="btn btn-primary m-2">Calculate</a> -->
+                                  </div>                                     
+                                </div>
+                              </div>
+                          </div>
+                           
+                        </div>
+                        
+
+
+                        <div class="row mt-4">
+                            <div class="col-md-4">
+                                <div class="card border-1 shadow text-center">
+                                  <div class="card-body">
+                                    <h5 class="card-title bold">Temperature</h5>
+                                    <input type="number" name="temp" class="temp" value="15" id="temp" required> <sup>o</sup>C  <!-- SBP-->
+                                    <div>
+                                    <!-- <a href="" class="btn btn-primary m-2">Calculate</a> -->
+                                    </div>                                     
+                                  </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                              <div class="card border-1 shadow text-center">
+                                <div class="card-body">
+                                  <h5 class="card-title bold">Heart Rate (Beats Per Minute)</h5>
+                                  <input type="number" name="heart_rate" class="heart_rate" value="80" id="heart_rate" required> BPM    <!-- HR-->
+                                  <div> 
+                                  <!-- <a href="" class="btn btn-primary m-2">Calculate</a> -->
+                                  </div>                                     
+                                </div>
+                              </div>
+                          </div>
+                            <div class="col-md-4">
+                                <div class="card border-1 shadow text-center">
+                                  <div class="card-body">
+                                    <h5 class="card-title bold">Respiratory System (PaO2/FiO2)</h5>
+                                    <input type="number" name="respiratory_sys" class="respiratory_sys" value="400" min="0" max="800" step="20" id="respiratory_sys" required> mmHg
+                                    <div>
+                                    <!-- <a href="" class="btn btn-primary m-2">Calculate</a> -->
+                                    </div>                                     
+                                  </div>
+                                </div>
+                            </div>
+                            
+                            <!-- <div class="col-md-4">
+                                <div class="card border-1 shadow text-center">
+                                  <div class="card-body">
+                                    <h5 class="card-title bold">Nervous System</h5>
+                                    <label for="nervous_ans">Glasgow coma scale</label>
+                                    <input type="number" name="nervous_ans" class="measure" value="15" id="nervous_ans" required>
+                                    <div>
+                                    </div>                                     
+                                  </div>
+                                </div>
+                            </div> -->
+                        </div>
+
+                        
+
+                        <div class="row mt-4">
+                            
+                            <div class="col-md-4">
+                                <div class="card border-1 shadow text-center">
+                                  <div class="card-body">
+                                    <h5 class="card-title bold">Coagulation (Platelets  )</h5>
+                                    <input type="number" name="coagulation" class="coagulation" value="150" min="0" max="300" step="10" id="coagulation" required> X 10<sup>3</sup>/µl
+                                    <div>
+                                    <!-- <a href="" class="btn btn-primary m-2">Calculate</a> -->
+                                    </div>                                     
+                                  </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="card border-1 shadow text-center">
+                                  <div class="card-body">
+                                    <h5 class="card-title bold">Liver (Bilirubin)</h5>
+                                    <input type="number" name="liver" class="liver" min="0" max="12" value="1" step="0.1" id="liver" required> (mg/dl)
+                                    <div>
+                                    <!-- <a href="" class="btn btn-primary m-2">Calculate</a> -->
+                                    </div>                                     
+                                  </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="card border-1 shadow text-center">
+                                  <div class="card-body">
+                                    <h5 class="card-title bold">Kidney Function (Creatinine)</h5>
+                                    <input type="number" name="kidney" class="kidney" min="0" max="5" step="0.1" value="1" id="kidney"> (mg/dl)
+                                                                       
+                                  </div>
+                                </div>
+                            </div>
+                        </div>
+
+                      <button class="btn btn-primary mt-5" type="submit">Predict Now</button>
+                    </from>
+                        
+                    </div>
+                  </div>
+            </div>    
+        </div>
+
+
+
+    </div>
+    
+</section>
+
+<br><br>
+<script>  
+
+$('document').ready(function() {
+  const myModal = new bootstrap.Modal(document.getElementById('information')); // creating modal object
+myModal.show(); // show modal
+myModal.hide(); // 
+});
+</script>
+
+<script>
+
+    let sofa=0;
+    let qsofa=0;
+    let level="";
+    const predict = document.getElementById("predict");
+    const detect = document.getElementById("detect");
+    const sofa_val = document.getElementById("sofa");
+    const qsofa_val = document.getElementById("qsofa");
+          
+    predict.addEventListener("submit", function (event) {
+        event.preventDefault();
+        const age = document.getElementById('p_age').innerText;
+        const id = document.getElementById('p_id').innerText;
+        const name = document.getElementById('p_name').innerText;
+        const dbp = document.getElementById('dbp').value;
+        const sbp = document.getElementById('sbp').value;
+        const o2s = document.getElementById('o2s').value;
+        const gcs = document.getElementById('gcs').value;
+        const resp = document.getElementById('respiratory').value;
+        const temp = document.getElementById('temp').value;
+        const heart_rate = document.getElementById('heart_rate').value;
+        const resp_sys = document.getElementById('respiratory_sys').value;
+        const coagulation = document.getElementById('coagulation').value;
+        const liver = document.getElementById('liver').value;
+        const kidney = document.getElementById('kidney').value;
+        const map = parseFloat(dbp) + parseFloat((sbp-dbp)/3);
+        const predictionData = new FormData();
+        predictionData.append('predict','');
+        predictionData.append('p_id', id);
+        predictionData.append('p_name', name);
+        predictionData.append('p_age', age);
+        predictionData.append('dbp', dbp);
+        predictionData.append('sbp', sbp);
+        predictionData.append('o2s', o2s);
+        predictionData.append('gcs', gcs);
+        predictionData.append('respiratory', resp);
+        predictionData.append('temp', temp);
+        predictionData.append('heart_rate', heart_rate);
+        predictionData.append('respiratory_sys', resp_sys);
+        predictionData.append('coagulation', coagulation);
+        predictionData.append('liver', liver);
+        predictionData.append('kidney', kidney);
+        predictionData.append('map', map);
+
+        sofa=0;
+        if(gcs==15 && resp_sys>=400 && coagulation>=150 && liver<1.2 && kidney<1.2)
+        {
+            sofa = 0;
+        } else if((gcs==13 || gcs==14) && (resp_sys<400 && resp_sys>=300) && (coagulation<=150 && coagulation>100)&& (liver>=1.2 && liver<=1.9)&& (kidney>=1.2 && kidney<=1.9))
+        {
+          sofa = sofa + 1;
+        }else if((gcs<=12 && gcs>=10) && (resp_sys<300 && resp_sys>=200) && (coagulation<=100 && coagulation>50)&& (liver>=2 && liver<=5.9)&& (kidney>=2 && kidney<=3.4))
+        {
+          sofa = sofa + 2;
+        }else if((gcs<=9 && gcs>=6) && (resp_sys<200 && resp_sys>=100) && (coagulation<=50 && coagulation>20)&& (liver>=6 && liver<=11.9)&& (kidney>=3.5 && kidney<=4.9))
+        {
+          sofa = sofa + 3;
+        }else if((gcs<=6) && (resp_sys<=100) && (coagulation<=20) && (liver>=12)&& (kidney>=5))
+        {
+          sofa = sofa + 4;
+        }
+
+        qsofa=0;
+        if(sbp<=100)
+        {
+          qsofa= qsofa + 1;
+        }
+        if(resp>=22)
+        {
+          qsofa= qsofa + 1;
+        }
+        if(gcs<=14)
+        {
+          qsofa= qsofa + 1;
+        }
+
+        predictionData.append('sofa', sofa);
+        predictionData.append('qsofa', qsofa);
+
+        fetch('/predict', {
+            method: 'POST',
+            body: predictionData,
+            })
+            .then((response) => response.json())
+            .then((result) => {
+            //   alert(result.success);
+            if(result.prediction=="Sepsis Detected"){
+
+              if(qsofa>0){
+                detect.innerHTML="<strong class='text-danger'> "+result.prediction+" </strong> with "+result.level;     
+              }else if(qsofa==0) {
+                detect.innerHTML="<strong class='text-danger'> "+result.prediction+" </strong>";
+              }
+            sofa_val.innerText=sofa;
+            qsofa_val.innerText=qsofa;
+            }else if(result.prediction=="Sepsis Not Detected"){
+              detect.innerHTML="<strong class='text-success'> "+result.prediction+" </strong>";
+              sofa_val.innerText="0";
+              qsofa_val.innerText="0";
+            }
+            $('#result').modal('show');
+
+
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+           
+    });
+    
+    </script>
+{% endblock %}
+<!-- Home Section Ends -->

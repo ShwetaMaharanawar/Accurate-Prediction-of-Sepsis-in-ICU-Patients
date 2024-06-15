@@ -1,0 +1,160 @@
+/* SETUP */
+
+:root {
+    /* Color Styles */
+    --primary: #FBC257;
+    --primary-light: #FCCC73;
+    --drak-brown: #341413;
+    --gray-1: #798092;
+    --gray-2: #E6E6ED;
+    --white: #FFFFFF;
+    --navy: #000435;
+
+    /* Font Size Desktop */
+    --header-1 : 64px;
+    --header-2 : 48px;
+    --header-3 : 42px;
+    --header-4 : 32px;
+
+    --text-medium: 18px;
+    --text-regular: 16px;
+    --text-light: 13px;
+
+
+    /* Font Weight */
+    --font-weight-bold: 700;
+    --font-weight-semi-bold: 600;
+    --font-weight-medium: 500;
+    --font-weight-regular: 400;
+    --font-weight-light: 300;
+
+}
+
+.home
+
+body::before{
+    display: block;
+    content: '';
+    height: 70px;
+}
+
+.navbar-collapse .navbar-nav .nav-item a{
+    color: #fff;
+}
+
+/* 
+body{
+    background-image: url("img/bg.jpg") rgba(0,0,0,0.3);
+    background-blend-mode: multiply;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+} */
+
+.navbar{
+    background-color: rgb(10, 3, 66);
+}
+
+.info{
+    background-color: #9a82563e;
+}
+
+.home{
+    background-image: url("/static/img/bg.jpg") ;
+    height: 50%;
+    background-blend-mode: multiply;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+table,th,tr,td{
+    border: 1px solid;
+    text-align: center;
+
+}
+
+.size{
+    font-size: 50px;
+}
+
+.descript {
+    border-radius: 10px;
+    font-size: 14px;
+    line-height: 24px;
+    margin-bottom: 10px;
+}
+
+.my-img-2 {
+    display: block;    
+    margin: auto;
+}
+
+.info_card {
+    text-align: left;
+    padding: 2rem;
+}
+
+.bold {
+/* text-decoration: solid; */
+    font-weight: bold;
+}
+
+.font-family-card {
+    /* font-weight: bold; */
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+
+/* .card-color {
+    background-color: aqua;
+
+} */
+
+
+
+
+/* refrence : https://www.w3schools.com/howto/howto_js_rangeslider.asp */
+.slidecontainer {
+    width: 100%; /* Width of the outside container */
+  }
+  
+  /* The slider itself */
+  .slider {
+    -webkit-appearance: none;  /* Override default CSS styles */
+    appearance: none;
+    width: 100%; /* Full-width */
+    height: 25px; /* Specified height */
+    background: #d3d3d3; /* Grey background */
+    outline: none; /* Remove outline */
+    opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
+    -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+    transition: opacity .2s;
+  }
+  
+  /* Mouse-over effects */
+  .slider:hover {
+    opacity: 1; /* Fully shown on mouse-over */
+  }
+  
+  /* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
+  .slider::-webkit-slider-thumb {
+    -webkit-appearance: none; /* Override default look */
+    appearance: none;
+    width: 25px; /* Set a specific slider handle width */
+    height: 25px; /* Slider handle height */
+    background: #04AA6D; /* Green background */
+    cursor: pointer; /* Cursor on hover */
+  }
+  
+  .slider::-moz-range-thumb {
+    width: 25px; /* Set a specific slider handle width */
+    height: 25px; /* Slider handle height */
+    background: #04AA6D; /* Green background */
+    cursor: pointer; /* Cursor on hover */
+  }
+
+#predict button{
+    margin-left: 45%;
+}
+

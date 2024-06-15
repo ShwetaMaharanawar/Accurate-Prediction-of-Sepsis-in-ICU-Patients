@@ -1,0 +1,79 @@
+{% extends "layout.html" %}
+{% block content %}
+    
+    <!-- Navbar -->
+    <navbar-expand-lg class="navbar navbar-expand-lg navbar-dark py-3 fixed-top">
+        <div class="container font  -monospace">
+            <a href="/" class="navbar-brand text-warning">Sepsis Detection System</a>
+
+            <!-- For smaller screens -->
+            <button 
+                class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navmenu"
+            >
+                <span class="navbar-toggler-icon"></span>
+            </button>         
+
+            <div class="collapse navbar-collapse" id="navmenu">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a href="/" class="nav-link">Home</a>
+                    </li>
+                    
+                    
+                </ul>
+            </div>
+        </div>
+    </navbar-expand-lg>
+    <!-- Navbar ends-->
+
+
+    <!-- Home Section Starts -->
+<section class="bg-transparent text-light px-5 py-5 text-center">
+    <div class="container font-family-card py-5">
+        <div>
+            <h1 class="text-warning py-4">Sepsis Detection</h1>
+            <div>
+                <!-- <div class="card" style="width: 18rem;"> this is original div-->
+                <div class="card info" >
+                    <!-- <img src="..." class="card-img-top" alt="..."> -->
+                    <div class="card-body">
+                      <h2 class="card-title bold pt-1">SOFA Score</h2>
+                      <div class="info_card">
+                        <h3 class="bold">Overview</h3>
+                        <h4>Purpose determine rate of organ failure</h4>
+                      
+                        <p class="card-text">The sequential organ failure assessment score (SOFA score), previously known as the sepsis-related organ failure assessment score, is used to track a person's status during the stay in an intensive care unit (ICU) to determine the extent of a person's organ function or rate of failure. The score is based on six different scores, one each for the respiratory, cardiovascular, hepatic, coagulation, renal and neurological systems. <br> he score tables below only describe points-giving conditions. In cases where the physiological parameters do not match any row, zero points are given. In cases where the physiological parameters match more than one row, the row with most points is picked. <br> The quick SOFA score (qSOFA) assists health care providers in estimating the risk of morbidity and mortality due to sepsis.</p>
+                      </div>
+                      <div class="info_card">
+                        <h3 class="bold">Medical Use</h3>
+                        <p class="card-text ">The SOFA scoring system is useful in predicting the clinical outcomes of critically ill patients. According to an observational study at an Intensive Care Unit (ICU) in Belgium, the mortality rate is at least 50% when the score is increased, regardless of initial score, in the first 96 hours of admission, 27% to 35% if the score remains unchanged, and less than 27% if the score is reduced. <br> <br> qSOFA has also been found to be poorly sensitive though decently specific for the risk of death with SIRS possibly better for screening.</p>
+                      </div>
+                      <!-- <a href="{{url_for('index')}}" class="btn btn-primary">Back</a> -->
+                      <a href="page2" class="btn btn-outline-primary bold">Lets Start</a>
+                    </div>
+                  </div>
+            </div>
+
+            
+        
+            
+        </div>
+        <img src="" alt="">
+    </div>
+    
+</section>
+{% endblock %}
+<!-- Home Section Ends -->
+
+
+
+
+
+
+
+
+
+
