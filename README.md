@@ -1,3 +1,6 @@
+Accurate-Prediction-of-Sepsis-in-ICU-Patients
+Developed an early sepsis detection model using Random Forest and SOFA/qSOFA scores, & launched website to raise awareness & provide healthcare professionals access.
+
 First install all packages & Software
 1.anaconda and jupyter notebook
 
